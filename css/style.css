@@ -1,0 +1,80 @@
+
+
+.theBody {
+	background-color : #f9faff;
+	margin-top : 10px;
+}
+/* header */
+header {
+	height : 200px;
+}
+
+/* Logo */
+#logo {
+	width : 150px;
+	height : auto;
+}
+
+/* Navigation Bar */
+#nav_bar {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float : right;
+    margin-top : 50px;
+}
+
+#nav_bar li {
+	display : inline;
+}
+
+#nav_bar li a {
+	width : 60px;
+	background-color : #153d7f;
+	padding : 20px;
+	text-decoration : none;
+	color : #fff;
+}
+
+#nav_bar li a:hover {
+	background-color : #76a6f2;
+}
+
+#cart_img {
+	width : 26px;
+	height : auto;
+}
+
+
+/* banner */
+#banner {
+	margin-left: -120px;
+}
+.mySlides {
+	width : 960px;
+	height : 470px;
+}
+
+img {
+    border-radius: 17px;
+}
+
+#part1 {
+	margin-top : -70px;
+}
+
+/* part2 */
+
+.part2 {
+	margin-top : 20;
+}
+.article_title{
+
+}
+
+.theArticle{
+	margin-left : 150px;
+}
+
+/* footer */
+
