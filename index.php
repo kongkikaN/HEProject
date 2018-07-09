@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Funder</title>
+	<title>Bridges</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,9 +19,10 @@
 			<div class = "col-md-5"> </div>
 			<div class = "col-md-5">
 				<ul id = "nav_bar">
-					<li><a href="#"> Home </a></li>
+					<li><a href="index.php"> Home </a></li>
 					<li><a href="#"> Get Started </a></li>
 					<li><a href="#"> Others </a></li>
+					<li><a href = "login.php"> LogIn </a>
 					<li><a href="#"> About </a></li>
 				</ul>
 			</div>
@@ -73,4 +74,5 @@ Crowdfunding πολύ απλά είναι η χρηματοδότηση από �
 
 	</body>
 </div>
+
 </html>
