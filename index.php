@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+
+
 <html>
 <head>
 	<title>Bridges</title>
@@ -9,21 +12,33 @@
     <script src="functions/functions.js"></script>
 </head>
 
-<div class = "container theBody">
+<div class = "container main_body">
 	<body>
 		<header>
 			<div class = "col-md-2">
-				<div><a href="#"> <img id = "logo" src="images/logo.png"></a> </div>
+				<div><a href="index.php"> <img id = "logo" src="images/logo.png"></a> </div>
 
 			</div>
 			<div class = "col-md-5"> </div>
 			<div class = "col-md-5">
 				<ul id = "nav_bar">
 					<li><a href="index.php"> Home </a></li>
-					<li><a href="#"> Get Started </a></li>
+					<li><a href="getstarted.php"> Get Started </a></li>
 					<li><a href="#"> Others </a></li>
-					<li><a href = "login.php"> LogIn </a>
-					<li><a href="#"> About </a></li>
+
+					<?php
+					$log_in_page = "login.php";
+					$log_in_page_name = "Log In";
+						if (isset($_SESSION["username"])){
+							$log_in_page = "logout.php";
+							$log_in_page_name = "Log Out";
+						}
+					?>
+					<li><a href = <?php echo $log_in_page ?> > <?php echo $log_in_page_name ?> </a>
+
+
+
+					<li><a href="about.php"> About </a></li>
 				</ul>
 			</div>
 		</header>
@@ -74,5 +89,14 @@ Crowdfunding πολύ απλά είναι η χρηματοδότηση από �
 
 	</body>
 </div>
+
+<?php
+
+
+	if (isset($_SESSION["username"])){
+		echo "Name : " . $_SESSION["username"];
+	}
+
+?>
 
 </html>
