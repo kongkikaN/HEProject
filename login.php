@@ -27,7 +27,6 @@
 			if ($conn->connect_error) {
 			    die("Connection failed: " . $conn->connect_error);
 			} 
-			echo "Connected successfully to database";
 
 			$r_user = $_POST["r_username"];
 			$r_pass = $_POST["r_password"];
@@ -59,7 +58,6 @@
 			if ($conn->connect_error) {
 			    die("Connection failed: " . $conn->connect_error);
 			} 
-			echo "Connected successfully to database";
 
 			$user = $_POST["username_input"];
 			$pass = $_POST["password_input"];
@@ -98,6 +96,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="functions/functions.js"></script>
 </head>
 
 <div class = "container main_body">
@@ -188,16 +187,11 @@
 				</div>
 			</div>
 		</div>
+
 	</article>
 	<footer>
 	</footer>
 	</body>
 </div>
-<?php 
 
-	if (isset($_SESSION["username"])){
-		echo " is set !! ";
-	}
-	//session_destroy();
-?>
 </html>
