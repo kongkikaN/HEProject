@@ -130,6 +130,7 @@
 			</div>
 		</header>
 
+
 	<article>
 
 		<div class = " container login_container" style = "background-image: url('images/other/login_background.jpg'); width : 87%; height : 100%; background-repeat: no-repeat;">
