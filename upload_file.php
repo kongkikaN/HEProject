@@ -1,4 +1,6 @@
 <?php 
+
+	session_start();
 	$file_result = "";
 
 	if ($_FILES["file"]["error"] > 0){
@@ -7,6 +9,7 @@
 	}
 
 	else {
+		$_SESSION["db_image_url"] = "images/other/". $_FILES["file"]["name"];
 		move_uploaded_file($_FILES["file"]["tmp_name"], "images/other/". $_FILES["file"]["name"]);
 	}
 

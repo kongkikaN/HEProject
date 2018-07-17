@@ -163,7 +163,6 @@
 					<form method = "post">
 						<div class = "modal-body">
 						<!-- register form -->
-						
 							<div class="form-group">
 								<label for="r_username">Name:</label>
 								<input type="text" class="form-control register_input" id="r_username" name = "r_username">
@@ -176,7 +175,6 @@
 								<label for ="r_email">e-mail</label>
 								<input type="email" class = "form-control register_input" id = "r_email" name="r_email">
 							</div>
-						
 						<!-- end of register form -->
 						</div>
 
