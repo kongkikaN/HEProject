@@ -28,6 +28,14 @@
 				$db_password = "";
 				$db_name = "e_business";
 
+				//session variables
+				$_SESSION["db_goal"] = $in_goal;
+				$_SESSION["db_title"] = $in_title;
+				$_SESSION["db_zip_code"] = $in_zip_code;
+				$_SESSION["db_category"] = $in_category;
+				$_SESSION["db_moneyFor"] = $in_moneyFor;
+
+				/*
 				$conn = new mysqli($servername, $db_username, $db_password, $db_name);
 
 				if ($conn->connect_error) {
@@ -41,10 +49,8 @@
 				} else {
 				    echo "Error: " . $create_user_query . "<br>" . $conn->error;
 				}
-
-
-
-
+				*/
+				header('Location: '. "createFund.php");
 			}
 			else {
 				echo '<script>alert("Something Went Wrong!");</script>';
