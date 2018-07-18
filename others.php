@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="functions/functions.js"></script>
 </head>
 
 <div class = "container main_body">
@@ -24,7 +25,7 @@
 				<ul id = "nav_bar">
 					<li><a href="index.php"> Home </a></li>
 					<li><a href="getstarted.php"> Get Started </a></li>
-					<li><a href="others.php"> Others </a></li>
+					<li><a href="#"> Others </a></li>
 
 					<?php
 					$log_in_page = "login.php";
@@ -34,7 +35,7 @@
 							$log_in_page_name = "Log Out";
 						}
 					?>
-					<li><a href = <?php echo $log_in_page ?> > <?php echo $log_in_page_name ?> </a>
+					<li><a href = <?php echo $log_in_page ?> > <?php echo $log_in_page_name ?> </a> </li>
 
 
 
@@ -45,6 +46,26 @@
 
 	<article>
 		
+		<?php include 'createConnectionToDB.php' ?>
+		<?php $sql_query_get_articles = "SELECT * FROM `fund`";
+		$result = $conn->query($sql_query_get_articles);
+		$counter = 1;
+		if ($result->num_rows > 0){
+			while($row = $result->fetch_assoc()){
+				$counter = $counter + 1;
+				if ($counter%2 == 0){
+					
+					include 'article.php';
+				}
+				else {
+					include 'article2.php';
+				}
+			}
+		}
+		?>
+		
+	
+	
 	</article>
 
 	<footer>

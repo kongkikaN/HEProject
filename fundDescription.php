@@ -33,7 +33,7 @@
 				} 
 				echo "Connected successfully to database";
 
-				$create_fund_query = "insert into fund (username, email, goal, campaign_title, campaign_for, zip_code, category, image_url, fund_description) values ('$in_username','$in_email','$in_goal', '$in_title','$in_moneyFor','$in_zip_code','$in_category', '$in_image_url', 'in_description' );";
+				$create_fund_query = "insert into fund (username, email, goal, campaign_title, campaign_for, zip_code, category, image_url, fund_description) values ('$in_username','$in_email','$in_goal', '$in_title','$in_moneyFor','$in_zip_code','$in_category', '$in_image_url', '$in_description' );";
 				if ($conn->multi_query($create_fund_query) === TRUE) {
 					header('Location: '. "index.php");
 				} else {
@@ -41,9 +41,7 @@
 				}
 			}
 	    }
-
 ?>
-
 
 <html>
 <head>
@@ -70,7 +68,7 @@
 				<ul id = "nav_bar">
 					<li><a href="index.php"> Home </a></li>
 					<li><a href="getstarted.php"> Get Started </a></li>
-					<li><a href="#"> Others </a></li>
+					<li><a href="others.php"> Others </a></li>
 
 					<?php
 					$log_in_page = "login.php";
@@ -96,7 +94,7 @@
 			</div>
 		</div>
 		<div class = "col-lg-8">
-			<form method = "post" class="form-horizontal" action="">
+			<form method = "post" class="form-horizontal" >
 				
 		    	<div class="form-group">
 		    		

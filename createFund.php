@@ -29,7 +29,7 @@
 				<ul id = "nav_bar">
 					<li><a href="index.php"> Home </a></li>
 					<li><a href="getstarted.php"> Get Started </a></li>
-					<li><a href="#"> Others </a></li>
+					<li><a href="others.php"> Others </a></li>
 
 					<?php
 					$log_in_page = "login.php";
