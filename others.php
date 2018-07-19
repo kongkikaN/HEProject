@@ -63,9 +63,6 @@
 			}
 		}
 		?>
-		
-	
-	
 	</article>
 
 	<footer>
