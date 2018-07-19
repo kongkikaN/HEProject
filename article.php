@@ -1,3 +1,9 @@
+
+
+<?php
+	$campaign_id = $row["fund_id"];
+	$campaign_goal = $row["goal"];
+?>
 <div class = "container" style = "background-color: #fff">
 	<div style = "padding-top: 35px; padding-bottom: 35px;">
 		<div class = "col-md-2"></div>
@@ -6,7 +12,7 @@
 		</div>
 		<div class = "col-md-1"></div>
 		<div class = "col-md-5">
-			<h3> <b> <?php echo $row["campaign_title"] ?> </b> </h3>
+			<h3> <a href="campaign.php?id=<?php echo $campaign_id;?>"> <b> <?php echo $row["campaign_title"] ?> </b> </a> </h3>
 			<p>
 				<?php echo $row["fund_description"] ?>
 			</p>

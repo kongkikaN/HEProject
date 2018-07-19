@@ -23,7 +23,7 @@
 			$in_category = $_SESSION["db_category"];
 			$in_image_url = $_SESSION["db_image_url"];
 			$in_description = $_POST["fund_description"];
-
+			$in_yt_url = $_SESSION["db_url"];
 
 			if (isset($in_description) && isset($in_image_url)){
 				$conn = new mysqli($servername, $db_username, $db_password, $db_name);
@@ -33,7 +33,14 @@
 				} 
 				echo "Connected successfully to database";
 
-				$create_fund_query = "insert into fund (username, email, goal, campaign_title, campaign_for, zip_code, category, image_url, fund_description) values ('$in_username','$in_email','$in_goal', '$in_title','$in_moneyFor','$in_zip_code','$in_category', '$in_image_url', '$in_description' );";
+				if ($in_yt_url == null){
+					$create_fund_query = "INSERT INTO `fund` (`username`, `email`, `goal`, `campaign_title`, `campaign_for`, `zip_code`, `category`, `fund_id`, `image_url`, `fund_description`, `youtube_url`) VALUES ('$in_username', '$in_email', '$in_goal', '$in_title', '$in_moneyFor', '$in_zip_code', '$in_category', NULL, '$in_image_url', '$in_description', '');";
+
+				}
+				else {
+					$create_fund_query = "INSERT INTO `fund` (`username`, `email`, `goal`, `campaign_title`, `campaign_for`, `zip_code`, `category`, `fund_id`, `image_url`, `fund_description`, `youtube_url`) VALUES ('$in_username', '$in_email', '$in_goal', '$in_title', '$in_moneyFor', '$in_zip_code', '$in_category', NULL, '', '$in_description', '$in_yt_url');";
+				}
+
 				if ($conn->multi_query($create_fund_query) === TRUE) {
 					header('Location: '. "index.php");
 				} else {
@@ -90,7 +97,13 @@
 		<div class = "col-lg-1"></div>
 		<div class = "col-lg-3">
 			<div >
-				<?php echo '<img src='. $_SESSION["db_image_url"] .' width = "300px" >' ?>
+				<?php 
+				if (isset($_SESSION["db_image_url"])){
+					echo '<img src='. $_SESSION["db_image_url"] .' width = "300px" >';
+				}
+				else {
+					echo 'video';
+				} ?>
 			</div>
 		</div>
 		<div class = "col-lg-8">
