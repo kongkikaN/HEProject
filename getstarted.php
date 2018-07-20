@@ -27,6 +27,9 @@
 				$db_username = "root";
 				$db_password = "";
 				$db_name = "e_business";
+				$test = 'images/logo.png';
+				$_SESSION["db_image_url"] = 'images/logo.png';
+				$_SESSION["yt_url"] = '';
 
 				//session variables
 				$_SESSION["db_goal"] = $in_goal;

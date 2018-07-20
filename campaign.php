@@ -21,12 +21,11 @@
 			$campaign_title = $row["campaign_title"];
 			$campaign_goal = $row["goal"];
 			$campaign_description = $row["fund_description"];
+			$campaign_image = $row["image_url"];
+			$campaign_yt_url = $row["youtube_url"];
 		}
 	}
 ?>
-
-
-
 
 <html>
 <head>
@@ -80,21 +79,21 @@
 
 			
 			<div class = "col-md-7">
-
-				
-
-				<?php if($row["youtube_url"] == null){
-					echo ' null';
-				}
-				else {
-					echo '<iframe width="100%" height = "350px" src=" '. $row["youtube_url"] . '</iframe>';
-				} 
-				?>
 				<span class = "row">
 					<div class = "col-md-1"></div>
+					<?php if ($campaign_yt_url != ''){
+						echo '<iframe width="520" height="315"
+					src="'.str_replace("watch?v=","embed/", $campaign_yt_url)  .'">
+					</iframe>';
+					}
+					else {
+						echo '<img src="'.$campaign_image.'" width="100%">';
+					} ?>
+					
 					<div class = "col-md-11"><h2><?php echo $campaign_title; ?></h2></div>
 				</span>
 				<span class = "row">
+
 					<p>
 						<?php echo $campaign_description; ?>
 					</p>

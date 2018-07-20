@@ -1,19 +1,24 @@
-
+<?php //current file ?>
 <?php session_start(); ?>
 
 <?php
+
+	
+	
 	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['submit_fund_btn']))
 	    {
+
 	        createFund();
 	    }
 
 	    function createFund(){
-	    	echo '<script>alert("NANANANA");</script>';
 	    	$servername = "localhost";
 			$db_username = "root";
 			$db_password = "";
 			$db_name = "e_business";
 
+			$in_image_url = $_SESSION["db_image_url"];
+			$in_yt_url = $_SESSION["yt_url"];
 			$in_username = $_SESSION["username"];
 			$in_email = $_SESSION["email"];
 			$in_goal = $_SESSION["db_goal"];
@@ -21,9 +26,8 @@
 			$in_moneyFor = $_SESSION["db_moneyFor"];
 			$in_zip_code = $_SESSION["db_zip_code"];
 			$in_category = $_SESSION["db_category"];
-			$in_image_url = $_SESSION["db_image_url"];
+
 			$in_description = $_POST["fund_description"];
-			$in_yt_url = $_SESSION["db_url"];
 
 			if (isset($in_description) && isset($in_image_url)){
 				$conn = new mysqli($servername, $db_username, $db_password, $db_name);
@@ -33,13 +37,11 @@
 				} 
 				echo "Connected successfully to database";
 
-				if ($in_yt_url == null){
-					$create_fund_query = "INSERT INTO `fund` (`username`, `email`, `goal`, `campaign_title`, `campaign_for`, `zip_code`, `category`, `fund_id`, `image_url`, `fund_description`, `youtube_url`) VALUES ('$in_username', '$in_email', '$in_goal', '$in_title', '$in_moneyFor', '$in_zip_code', '$in_category', NULL, '$in_image_url', '$in_description', '');";
+				
+				$create_fund_query = "INSERT INTO `fund` (`username`, `email`, `goal`, `campaign_title`, `campaign_for`, `zip_code`, `category`, `fund_id`, `image_url`, `fund_description`, `youtube_url`) VALUES ('$in_username', '$in_email', '$in_goal', '$in_title', '$in_moneyFor', '$in_zip_code', '$in_category', NULL, '$in_image_url', '$in_description', '$in_yt_url');";
 
-				}
-				else {
-					$create_fund_query = "INSERT INTO `fund` (`username`, `email`, `goal`, `campaign_title`, `campaign_for`, `zip_code`, `category`, `fund_id`, `image_url`, `fund_description`, `youtube_url`) VALUES ('$in_username', '$in_email', '$in_goal', '$in_title', '$in_moneyFor', '$in_zip_code', '$in_category', NULL, '', '$in_description', '$in_yt_url');";
-				}
+				echo '<script>alert("'.$create_fund_query.'");</script>';
+
 
 				if ($conn->multi_query($create_fund_query) === TRUE) {
 					header('Location: '. "index.php");
@@ -102,7 +104,7 @@
 					echo '<img src='. $_SESSION["db_image_url"] .' width = "300px" >';
 				}
 				else {
-					echo 'video';
+					echo '<iframe width="420" height="315" src="'. str_replace("watch?v=", "embed/", $_SESSION["yt_url"]).'"> </iframe>';
 				} ?>
 			</div>
 		</div>

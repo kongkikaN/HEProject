@@ -53,7 +53,7 @@
 				<div class = "col-sm-8">
 					<h1 style = "text-align: center;">Add a cover image</h1>
 					<button type="button" class="btn btn-info btn-block btn-lg" data-toggle="modal" data-target="#upload_image_modal">Upload a photo</button>
-					<h2 style = "text-align: center;">AND</h2>
+					<h2 style = "text-align: center;">OR</h2>
 					<button type="button" class="btn btn-danger btn-block btn-lg" data-toggle="modal" data-target="#upload_url_modal">Select A YouTube Video</button>
 					<br><br>
 					<img src="images\other\person.jpg" alt="Marisa, a crowd funding expert" width="35"> 
@@ -66,13 +66,12 @@
 		</div>
 
 		<!-- Upload youtube url modal -->
-		<!-- Upload image Modal -->
 		<div id="upload_url_modal" class="modal fade" role="dialog">
  		<div class="modal-dialog">
 
 		<!-- Modal content-->
 		<div class="modal-content">
-			<form enctype="multipart/form-data" action="create_url.php" method="post">
+			<form action="create_url.php" method="post">
 				<div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal">&times;</button>
 				    <h4 class="modal-title">Copy - Paste your YouTube promo video</h4>
@@ -105,7 +104,7 @@
 				    
 				</div>
 				<div class="modal-footer">
-					<input type="submit" class="btn btn-danger" value="Upload"></input>
+					<input type="submit" class="btn btn-danger" value="upload_filead"></input>
 			    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</form>
