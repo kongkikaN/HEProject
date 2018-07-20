@@ -2,9 +2,6 @@
 <?php session_start(); ?>
 
 <?php
-
-	
-	
 	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['submit_fund_btn']))
 	    {
 

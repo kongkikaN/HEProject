@@ -25,7 +25,7 @@
 			// Check connection
 			if ($conn->connect_error) {
 			    die("Connection failed: " . $conn->connect_error);
-			} 
+			}
 
 			$r_user = $_POST["r_username"];
 			$r_pass = $_POST["r_password"];

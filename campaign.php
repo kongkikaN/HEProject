@@ -1,6 +1,36 @@
 
 <?php session_start(); ?>
 
+<?php
+	function calculateDonation(){
+		$donated = 0;
+		include('createConnectionToDB.php');
+		$sql_query_donations = "SELECT * FROM `donation` WHERE  fund_id = " . $_GET["id"];
+		$result = $conn->query($sql_query_donations);
+		if ($result->num_rows > 0){
+			while ($row = $result->fetch_assoc()){
+				$donated = $donated + $row["amount"];
+			}
+		}
+
+		return $donated;
+	}
+
+	function calculateDonationPercentage(){
+		include('createConnectionToDB.php');
+		$sql_query_donations = "SELECT * FROM `fund` WHERE  fund_id = " . $_GET["id"];
+		$result = $conn->query($sql_query_donations);
+		if ($result->num_rows > 0){
+			while ($row = $result->fetch_assoc()){
+				$goal = $row["goal"];
+			}
+		}
+
+		$percentage = calculateDonation() / $goal * 100;
+		return $percentage;
+	}
+?>
+
 
 <?php
 	$servername = "localhost";
@@ -25,6 +55,37 @@
 			$campaign_yt_url = $row["youtube_url"];
 		}
 	}
+?>
+
+
+<?php 
+	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['donate_submit_btn'])){
+        donate();
+    }
+
+    function donate(){
+    	if (isset($_SESSION["username"])){
+    		$c_username = $_SESSION["username"];
+    		$c_amount = $_POST["donation"];
+    		$c_message = $_POST["message"];
+    		$c_fund_id = $_GET["id"];
+
+    		include('createConnectionToDB.php');
+
+    		if ($c_amount && $c_message && $c_fund_id){
+    			$query = "INSERT INTO `donation` (`username`, `fund_id`, `amount`, `message`, `donation_id`) VALUES ('$c_username', '$c_fund_id', '$c_amount', '$c_message', NULL);";
+
+    			if ($conn->multi_query($query) === TRUE) {
+				} else {
+				    echo "Error: " . $query . "<br>" . $conn->error;
+				}
+    		}
+    		
+    	}
+    	else {
+    		echo '<script>alert("Please log in first!");</script>';
+    	}
+    }
 ?>
 
 <html>
@@ -63,21 +124,14 @@
 						}
 					?>
 					<li><a href = <?php echo $log_in_page ?> > <?php echo $log_in_page_name ?> </a> </li>
-
-
-
 					<li><a href="about.php"> About </a></li>
 				</ul>
 			</div>
 		</header>
-
 	<article>
 
 		<div class = "container">
 			<div class = "col-md-1"></div>
-
-
-			
 			<div class = "col-md-7">
 				<span class = "row">
 					<div class = "col-md-1"></div>
@@ -100,15 +154,15 @@
 				</span>
 			</div>
 			<div class = "col-md-3" style = "box-shadow: 5px 7px #888888;">
-				<h1><b> 6999€</b></h1> <p> <b>out of <?php echo $campaign_goal;  ?></b></p>
+				<h1><b> <?php echo calculateDonation(); ?> € </b></h1> <p> <b>out of <?php echo $campaign_goal;  ?></b></p>
 				<div class="progress" style = "border-radius: 30px;">
-				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; border-radius: 30px;">
+				<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" <?php echo 'style="width:'. calculateDonationPercentage() .'%; border-radius: 30px;"'; ?> >
+
 				    <span class="sr-only">70% Complete</span>
 				</div>
 				</div>
 				<div>
-
-					<button type="button" class="btn  btn-warning btn-lg" data-toggle="modal" data-target="#donate_form">Donate Now</button>
+					<button style = "margin-left: 25%" type="button" class="btn  btn-warning btn-lg" data-toggle="modal" data-target="#donate_form">Donate Now</button>
 
 					<div id = "donate_form" class = "modal fade" role = "dialog">
 						<div class = "modal-dialog">
@@ -128,7 +182,6 @@
 											<label for="message">Message:</label>
 											<textarea rows = "5" placeholder="Your message to the fund raiser" class="form-control register_input" id="message" name = "message"></textarea>
 										</div>
-										
 									<!-- end of register form -->
 									</div>
 

@@ -14,7 +14,8 @@
 		<div class = "col-md-5">
 			<h3> <a href="campaign.php?id=<?php echo $campaign_id;?>"> <b> <?php echo $row["campaign_title"] ?> </b> </a> </h3>
 			<p>
-				<?php echo $row["fund_description"] ?>
+				<?php //echo $row["fund_description"] ?>
+				<?php echo substr($row["fund_description"], 0, 340) ?>
 			</p>
 		</div>
 		<div class = "col-md-2"></div>
