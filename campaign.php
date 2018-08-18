@@ -1,6 +1,8 @@
 
-<?php session_start(); ?>
-
+<?php
+	session_start();
+	include 'functions.php';
+?>
 <?php
 	function calculateDonation(){
 		$donated = 0;
@@ -29,7 +31,23 @@
 		$percentage = calculateDonation() / $goal * 100;
 		return $percentage;
 	}
+
+	function getDonators(){
+		include('createConnectionToDB.php');
+		$sql_query_donators = "SELECT * FROM `donation` WHERE  fund_id = " . $_GET["id"];
+		$result = $conn->query($sql_query_donators);
+		if ($result->num_rows > 0){
+			while ($row = $result->fetch_assoc()){
+				echo '<a href="#" class="list-group-item">
+						    	<h5 class="list-group-item-heading">'.$row["username"].'</h5>
+						    	<p class="list-group-item-text">Donated: '.$row["amount"].'€</p>
+						    </a>';
+			}
+		}
+
+	}
 ?>
+
 
 
 <?php
@@ -164,6 +182,13 @@
 				<div>
 					<button style = "margin-left: 25%" type="button" class="btn  btn-warning btn-lg" data-toggle="modal" data-target="#donate_form">Donate Now</button>
 
+
+					<div style = "padding-top: 20px;">
+						<div class="list-group">
+						    <?php getDonators(); ?>
+						</div>
+					</div>
+
 					<div id = "donate_form" class = "modal fade" role = "dialog">
 						<div class = "modal-dialog">
 							<div class = "modal-content">
@@ -193,12 +218,13 @@
 							</div>
 						</div>
 					</div>
-
+					<form method = "post">
+						<button class = "btn-success" type="submit" name="id">Approve</button>
+					</form>
 				</div>
 			</div>
 			<div class = "col-md-1"></div>
 		</div>
-		
 	</article>
 
 	<footer>
@@ -207,3 +233,4 @@
 	</body>
 </div>
 </html>
+
