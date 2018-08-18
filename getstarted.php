@@ -27,6 +27,9 @@
 				$db_username = "root";
 				$db_password = "";
 				$db_name = "e_business";
+				$test = 'images/logo.png';
+				$_SESSION["db_image_url"] = 'images/logo.png';
+				$_SESSION["yt_url"] = '';
 
 				//session variables
 				$_SESSION["db_goal"] = $in_goal;
@@ -34,7 +37,7 @@
 				$_SESSION["db_zip_code"] = $in_zip_code;
 				$_SESSION["db_category"] = $in_category;
 				$_SESSION["db_moneyFor"] = $in_moneyFor;
-
+				
 				/*
 				$conn = new mysqli($servername, $db_username, $db_password, $db_name);
 
@@ -55,16 +58,11 @@
 			else {
 				echo '<script>alert("Something Went Wrong!");</script>';
 			}
-
-			
 		}
 		else {
 			echo '<script>alert("Please sign in first");</script>';
 		}
-		
-
 	}
-
 ?>
 <html>
 <head>
@@ -103,7 +101,6 @@
 				</ul>
 			</div>
 		</header>
-
 	<article">
 		<div class = "container" >
 			<form class = "form-horizontal" method = "post" >
@@ -184,9 +181,6 @@
 
 			</form>
 		</div>
-
-
-		
 	</article>
 
 	<footer>

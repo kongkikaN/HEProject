@@ -25,7 +25,7 @@
 				<ul id = "nav_bar">
 					<li><a href="index.php"> Home </a></li>
 					<li><a href="getstarted.php"> Get Started </a></li>
-					<li><a href="#"> Others </a></li>
+					<li><a href="others.php"> Others </a></li>
 
 					<?php
 					$log_in_page = "login.php";
@@ -36,9 +36,6 @@
 						}
 					?>
 					<li><a href = <?php echo $log_in_page ?> > <?php echo $log_in_page_name ?> </a> </li>
-
-
-
 					<li><a href="about.php"> About </a></li>
 				</ul>
 			</div>
@@ -47,7 +44,13 @@
 	<article>
 		
 		<?php include 'createConnectionToDB.php' ?>
-		<?php $sql_query_get_articles = "SELECT * FROM `fund`";
+		<?php 
+		$sql_query_get_articles = "SELECT * FROM `fund`  INNER JOIN approved_articles ON fund.fund_id = approved_articles.fund_id;";
+		
+		if (isset($_SESSION["admin"])){
+			$sql_query_get_articles = "SELECT * FROM `fund`";
+		}
+		
 		$result = $conn->query($sql_query_get_articles);
 		$counter = 1;
 		if ($result->num_rows > 0){

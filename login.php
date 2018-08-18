@@ -1,15 +1,12 @@
 <?php 
 	session_start();
 ?>
-
-
 <?php
 
 		if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['register_submit_btn']))
 	    {
 	        registerUser();
 	    }
-
 
 	    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['login_submit_btn']))
 	    {
@@ -26,7 +23,7 @@
 			// Check connection
 			if ($conn->connect_error) {
 			    die("Connection failed: " . $conn->connect_error);
-			} 
+			}
 
 			$r_user = $_POST["r_username"];
 			$r_pass = $_POST["r_password"];
@@ -75,8 +72,16 @@
 						$_SESSION["email"] = $row["email"];
 						$_SESSION["username"] = $user;
 						$_SESSION["loggedIn"] = true;
+						$_SESSION["user_id"] = $row["user_id"];
+						$user_id = $_SESSION["user_id"];
 						$log_in_page = "logout.php";
 						$log_in_page_name = "Log Out";
+						
+						$sql_query = "SELECT * FROM `administrators` where user_id = '$user_id'";
+						$result = $conn->query($sql_query);
+						while($row = $result->fetch_assoc()){
+							$_SESSION["admin"] = true;
+						}
 					}
 				}
 			}
